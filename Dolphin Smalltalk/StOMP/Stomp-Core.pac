@@ -88,6 +88,7 @@ package methodNames
 	add: #UndefinedObject -> #stompSupportsReference:;
 	add: 'BlockClosure class' -> #stompCreateInstanceFrom:;
 	add: 'Character class' -> #stompCreateInstanceFrom:;
+	add: 'Collection class' -> #stompCreateCollectionInstanceFrom:;
 	add: 'Collection class' -> #stompCreateInstanceFrom:;
 	add: 'Date class' -> #stompCreateInstanceFrom:;
 	add: 'Fraction class' -> #stompCreateInstanceFrom:;
@@ -295,7 +296,10 @@ stompWriteContentTo: stompWriter 	"Override as you wish"	"Provides basic dispa
 
 !Collection class methodsFor!
 
+stompCreateCollectionInstanceFrom: stompReader	^self stompCreateMixedInstanceFrom: stompReader!
+
 stompCreateInstanceFrom: stompReader	| cls |	stompReader context clearFieldsInfo.	cls := self.	cls isBits ifTrue: [^ self stompCreateBitsInstanceFrom: stompReader].	^ self stompCreateCollectionInstanceFrom: stompReader				! !
+!Collection class categoriesFor: #stompCreateCollectionInstanceFrom:!*Stomp/Core/instance creation!public! !
 !Collection class categoriesFor: #stompCreateInstanceFrom:!*Stomp/Core/instance creation!public! !
 
 !Date methodsFor!
@@ -512,7 +516,7 @@ environmentName	^16r13!
 
 header	^'SP' asByteArray!
 
-initialize	"self initialize"	"self initTupleTags"	!
+initialize	"self initialize"	self initTupleTags	!
 
 initTupleTags	"self initTupleTags"	tupleTags := Set new.	tupleTags add: self value.	tupleTags add: self reference.	tupleTags add: self byteString.	tupleTags add: self byteSymbol.	tupleTags add: self wideString.	tupleTags add: self wideSymbol.!
 
