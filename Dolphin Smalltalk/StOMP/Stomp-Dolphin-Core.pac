@@ -3,7 +3,7 @@ package := Package name: 'Stomp-Dolphin-Core'.
 package paxVersion: 1;
 	basicComment: ''.
 
-package basicPackageVersion: '6'.
+package basicPackageVersion: '8'.
 
 
 package classNames
@@ -205,7 +205,7 @@ privInstVarIndexOf: aClass for: varName
 		ifFalse: [index + superKlass instSize].
 !
 
-timestampFromNanoseconds: nanoseconds	"^ Timestamp fromNanoseconds: nanoseconds"	^ TimeStamp fromSeconds: (nanoseconds / 1000000000)!
+timestampFromNanoseconds: nanoseconds	"^ Timestamp fromNanoseconds: nanoseconds"	^ TimeStamp fromSeconds: (nanoseconds // 1000000000)!
 
 useEnvironmentByDefault	^false! !
 !StompDolpPortableUtil categoriesFor: #bytes:intoOf:!actions!public! !
